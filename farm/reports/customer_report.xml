@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <report
+                id="customer_report"
+                string="Customer Details"
+                model="farm.customer"
+                report_type="qweb-pdf"
+                file="farm.customer_report_template"
+                name="farm.customer_report_template"
+        />
+
+        <template id="customer_report_template">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-call="web.external_layout">
+                        <div class="page">
+                            <h1 style="margin-left:200px;">Yazid Chem Company</h1>
+                            <br/>
+                            <span class="text-center">Customer Name  >>   </span><span t-field="doc.customer_name"></span>
+                            <br/>
+                            <span class="text-center">ID  >>   </span><span t-field="doc.id_person"></span>
+                            <br/>
+                            <span class="text-center">Select Users  >>   </span><span t-field="doc.user_ids"></span>
+                            <br/>
+                            <span class="text-center">Phone  >>   </span><span t-field="doc.phone"></span>
+                            <br/>
+                            <span class="text-center">Date Of Sale   >>   </span><span t-field="doc.date_of_sale"></span>
+                            <br/>
+                            <span class="text-center">Responsible  >>   </span><span t-field="doc.responsible"></span>
+                            <br/>
+                            <br/>
+
+                            <table border="1" class="mt32 table table-bordered oe_import_grid bg-white">
+                                <thead>
+                                    <tr style="border:1">
+                                        <th style="border:1">S.No</th>
+                                        <th style="border:1">Product Name</th>
+                                        <th style="border:1">Product Type</th>
+                                        <th style="border:1">Quantity</th>
+                                        <th style="border:1">Unit Price</th>
+                                        <th style="border:1">total</th>
+                                    </tr>
+                                </thead>
+                                <body>
+                                    <t t-set="i" t-value="1" style="border:1px;"/>
+                                    <t t-set="total" t-value="0" style="border:1px;"/>
+                                    <tr t-foreach="doc.product_ids" t-as="oo">
+                                        <td t-esc="i" style="border:1"/>
+                                        <t t-set="total" t-value="total + oo.unit_price"/>
+                                        <td style="border:1" ><span t-field="oo.product_name" style="border:1" /></td>
+                                        <td style="border:1" ><span t-field="oo.product_type" style="border:1" /></td>
+                                        <td style="border:1" ><span t-field="oo.quantity" style="border:1" /></td>
+                                        <td style="border:1" ><span t-field="oo.unit_price" style="border:1" /></td>
+                                        <td style="border:1" ><span t-field="oo.total" style="border:1" /></td>
+                                        <t t-set="i" t-value="i+1" style="border:1"/>
+
+                                    </tr>
+                                    <tr border="1">
+                                        <td style="border:1">SubTotal</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td class="text_right"><span t-esc="subtotal"/></td>
+
+                                    </tr>
+                                </body>
+                            </table>
+
+<!--                             <br></br>-->
+<!--                            <span>SubTotal : </span><span t-esc="subtotal"/>-->
+
+
+                        </div>
+
+                    </t>
+                </t>
+            </t>
+        </template>
+
+
+
+
+        <!--        <template id="customer_report_template">-->
+        <!--            <t t-call="web.html_container">-->
+        <!--                <t t-foreach="docs" t-as="doc">-->
+        <!--                    <t t-call="web.external_layout">-->
+        <!--                        <div align="center">-->
+        <!--                            <h2 style="background-color:#55005f; background-size: 150px;width: 400px; height: 80px;display:inline-block;border-radius: 25px; opacity:0.3;">-->
+        <!--                                <span style="position:relative; top: 20px;color:white;">Customer Report</span>-->
+        <!--                            </h2>-->
+        <!--                        </div>-->
+
+        <!--                        <div class="page">-->
+        <!--                            <table border="1" class="table table-condensed" style="border:3px black dotted; text-align:center;">-->
+        <!--                                <tr >-->
+        <!--                                    <th style="background-color:#a77a9b;border: 1px solid black;color:white;" class="thead-light">Customer Name</th>-->
+        <!--                                    <th style="border: 1px dashed black; color:black;" class="thead-light" t-field="doc.customer_name"/>-->
+        <!--                                </tr>-->
+        <!--                                <tr >-->
+        <!--                                    <th style="background-color:#a77a9b;border: 1px solid black;color:white;" class="thead-light">ID</th>-->
+        <!--                                    <th style="border: 1px dashed black; color:black;" class="thead-light" t-field="doc.id_person"/>-->
+        <!--                                </tr>-->
+        <!--                                <tr>-->
+        <!--                                    <th style="background-color:#a77a9b;border: 1px solid black;color:white;" class="thead-light">Select Users</th>-->
+        <!--                                    <th style="border: 1px solid black;color:black;" class="thead-light" t-field="doc.user_ids"/>-->
+        <!--                                </tr>-->
+        <!--                                <tr>-->
+        <!--                                    <th style="background-color:#a77a9b;border: 1px solid black;color:white;" class="thead-light">Phone</th>-->
+        <!--                                    <th style="border: 1px solid black;color:black;" class="thead-light" t-field="doc.phone"/>-->
+        <!--                                </tr>-->
+        <!--                                <tr>-->
+        <!--                                    <th style="background-color:#a77a9b;border: 1px solid black;color:white;" class="thead-light">Date of Sale</th>-->
+        <!--                                    <th style="border: 1px solid black;color:black;" class="thead-light" t-field="doc.date_of_sale"/>-->
+        <!--                                </tr>-->
+        <!--                                <tr>-->
+        <!--                                    <th style="background-color:#a77a9b;border: 1px solid black;color:white;" class="thead-light">Responsible</th>-->
+        <!--                                    <th style="border: 1px solid black;color:black;" class="thead-light" t-field="doc.responsible"/>-->
+        <!--                                </tr>-->
+        <!--                            </table>-->
+        <!--                            <br/>-->
+        <!--&lt;!&ndash;                            <p style="color:black;text-align:center;font-size:30px; opacity: 0.6; background-color:#a76b3a; background-size:auto; width: 400px; height: 80px; display:inline-block; top: 20px;">Reservation Details</p>&ndash;&gt;-->
+        <!--&lt;!&ndash;                            <p style="background-color:#55005f; background-size: 150px;width: 400px; height: 80px;display:inline-block;border-radius: 25px; opacity:0.3; position:relative; top: 20px;color:white;">Reservation Details</p>&ndash;&gt;-->
+        <!--&lt;!&ndash;                            <p style="color:white;text-align:center;font-size:30px; background-color:#a87b11; background-size: 150px;width: 400px; height: 80px;display:inline-block;border-radius: 25px; position:relative; top: 20px;">Reservation Details</p>&ndash;&gt;-->
+        <!--&lt;!&ndash;                            <h1 style="background-color:#55005f; background-size: 150px;width: 400px; height: 80px;display:inline-block;border-radius: 25px; opacity:0.3;">&ndash;&gt;-->
+        <!--&lt;!&ndash;                                    <span style="position:relative; top: 20px;color:white;">Person Details Report</span>&ndash;&gt;-->
+        <!--                            <div align="center">-->
+        <!--                            <h2 style="background-color:#a76b3a; background-size: 150px;width: 400px; height: 80px;display:inline-block;border-radius: 25px; opacity:0.3;">-->
+        <!--                                <span style="position:relative; top: 20px;color:white;">Products Report</span>-->
+        <!--                            </h2>-->
+        <!--                        </div>-->
+        <!--&lt;!&ndash;                            @###############&ndash;&gt;-->
+        <!--                            <table border="1" class="table table-condensed" style="background-color: lightblue;border-style:solid; text-align:center;" width="100%">-->
+        <!--                                <t t-set="counter" t-value="1"/>-->
+        <!--                                <t t-set="total" t-value="0"/>-->
+        <!--                                <t  t-foreach="doc.product_ids" t-as="line">-->
+        <!--&lt;!&ndash;&lt;!&ndash;                                    <t t-if="line.type_check =='dental'">&ndash;&gt;&ndash;&gt;-->
+        <!--                                        <tr style="text-align:center;">-->
+        <!--                                            <td t-esc="counter" style="width:10%;border: 1px solid black" class="thead-light"/>-->
+        <!--&lt;!&ndash;                                            <td t-esc="line.patient_name" style="width:30%;border: 1px solid black" class="thead-light"/>&ndash;&gt;-->
+        <!--                                            <td t-esc="line.product_name" style="width:20%;border: 1px solid black" class="thead-light"/>-->
+        <!--                                            <td t-esc="line.product_type" style="width:30%;border: 1px solid black" class="thead-light"/>-->
+        <!--                                            <td t-esc="line.customer_id" style="width:30%;border: 1px solid black" class="thead-light"/>-->
+        <!--                                            <td t-esc="line.expiration" style="width:30%;border: 1px solid black" class="thead-light"/>-->
+        <!--                                            <td t-esc="line.quantity" style="width:30%;border: 1px solid black" class="thead-light"/>-->
+        <!--                                            <td t-esc="line.unit_price" style="width:30%;border: 1px solid black" class="thead-light"/>-->
+        <!--&lt;!&ndash;                                            <td t-esc="line.subtotal" style="width:30%;border: 1px solid black" class="thead-light"/>&ndash;&gt;-->
+        <!--&lt;!&ndash;                                        </tr>&ndash;&gt;-->
+        <!--                                        <t t-set="counter" t-value="counter+1"/>-->
+        <!--&lt;!&ndash;                                        <t t-set="total" t-value="line.patient_name.reservation_price+total"/>&ndash;&gt;-->
+        <!--                                        </tr>-->
+        <!--&lt;!&ndash;                                </t>&ndash;&gt;-->
+
+        <!--                                </t>-->
+
+
+        <!--                            </table>-->
+
+        <!--&lt;!&ndash;                ##############################&ndash;&gt;-->
+        <!--                            <br></br>-->
+        <!--                            <span>Subtotal : </span><span t-esc="subtotal"/>-->
+
+        <!--                            &lt;!&ndash;                                    <tr t-foreach="docs.get_onhand_products(loc)" t-as="track">&ndash;&gt;-->
+        <!--                            &lt;!&ndash;                                        <td t-esc="track['code'] or ''" style="border: 1px solid black" class="thead-light"/>&ndash;&gt;-->
+        <!--                            &lt;!&ndash;                                        <td t-esc="track['product'] or ''" style="border: 1px solid black" class="thead-light"/>&ndash;&gt;-->
+        <!--                            &lt;!&ndash;                                        <td t-esc="track['qty'] or '0.0'" style="border: 1px solid black" class="thead-light"/>&ndash;&gt;-->
+        <!--                            &lt;!&ndash;                                        <td t-esc="track['cost'] or '0.0'" style="border: 1px solid black" class="thead-light"/>&ndash;&gt;-->
+        <!--                            &lt;!&ndash;                                        <td t-esc="track['total'] or '0.0'" style="border: 1px solid black" class="thead-light"/>&ndash;&gt;-->
+        <!--                            &lt;!&ndash;                                        <t t-set="net" t-value="net + track['qty'] "/>&ndash;&gt;-->
+        <!--                            &lt;!&ndash;                                    </tr>&ndash;&gt;-->
+        <!--                            &lt;!&ndash;                                </tr>&ndash;&gt;-->
+        <!--                            &lt;!&ndash;                            </table>&ndash;&gt;-->
+        <!--                            &lt;!&ndash;                            <br/>&ndash;&gt;-->
+        <!--                            &lt;!&ndash;                            <div align="center">&ndash;&gt;-->
+        <!--                            &lt;!&ndash;                                <h3>Qty Total :  <span t-esc="net"/></h3>&ndash;&gt;-->
+        <!--                            &lt;!&ndash;                            </div>&ndash;&gt;-->
+        <!--                        </div>-->
+
+        <!--                    </t>-->
+        <!--                </t>-->
+        <!--            </t>-->
+        <!--        </template>-->
+
+
+
+
+
+    </data>
+</odoo>

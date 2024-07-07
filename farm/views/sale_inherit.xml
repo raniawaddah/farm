@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+<!--        <record id="res_partner_inherit_view_form" model="ir.ui.view">&ndash;&gt;-->
+<!--            <field name="name">res_partner_inherit_view_form</field>-->
+<!--            <field name="model">res.partner</field>-->
+<!--            <field name="inherit_id" ref="base.view_partner_form"/>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <xpath expr="//form[@name='email']" position="after">-->
+
+<!--                    <label for="phone2">phone2</label>-->
+<!--                    <field name="phone2"/>-->
+
+<!--                    &lt;!&ndash;                    <field name="photo"/>&ndash;&gt;-->
+
+<!--                </xpath>-->
+
+<!--                <xpath expr="//form" position="attributes">-->
+<!--                    <attribute name="name">Res Partner</attribute>-->
+<!--                </xpath>-->
+<!--                <field name="email" position="after">-->
+<!--                    <label for="phone2">phone2</label>-->
+<!--                    <field name="phone2" />-->
+<!--                </field>-->
+<!--                <xpath expr="//notebook" position="inside">-->
+<!--                    <page>-->
+<!--                        <field name="phone2" />-->
+<!--                    </page>-->
+<!--                </xpath>-->
+<!--                <xpath expr="//notebook/page[@name='contact']" position="after">-->
+<!--                    <page string="My Cost">-->
+<!--                        <group>-->
+<!--                            <field name="cost2"/>-->
+<!--                        </group>-->
+<!--                    </page>-->
+
+<!--                </xpath>-->
+
+
+<!--            </field>-->
+<!--        </record>-->
+
+
+
+
+        <record id="sale_order_inherit_view_form" model="ir.ui.view">
+            <field name="name">sale_order_inherit_view_form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='validity_date']" position="after">
+                    <!--                    <label for="phone2">phone2</label>-->
+                    <field name="phone2"/>
+                </xpath>
+
+                <xpath expr="//header" position="inside">
+                    <button name="action_draft" string="Draft" type="object" class="oe_highlight" />
+
+                </xpath>
+                <xpath expr="//notebook/page[@name='other_information']" position="after">
+                    <page string="My Cost2">
+                        <group>
+                        <field name="cost2"/>
+                        </group>
+                    </page>
+                </xpath>
+
+                <xpath expr="//field[@name='validity_date']" position="attributes">
+                    <attribute name="required">1</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='payment_term_id']" position="attributes">
+                    <attribute name="readonly">1</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='order_line']/tree/field[@name='product_id']" position="after">
+                    <field name="note" groups="farm.allow_to_show_note"/>
+
+                </xpath>
+
+                <xpath expr="//field[@name='order_line']/tree/field[@name='tax_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+
+
+
+            </field>
+        </record>
+
+
+        <record id="product_template_inherit_view_form" model="ir.ui.view">
+            <field name="name">product_template_inherit_view_form</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_only_form_view"/>
+            <field name="arch" type="xml">
+                <!--                                <xpath expr="//field[@name='list_price']" position="after">-->
+
+                <!--                &lt;!&ndash;                    <label for="quantity">quantity</label>&ndash;&gt;-->
+                <!--                                    <field name="quantity"/>-->
+
+                <!--                                </xpath>-->
+                <xpath expr="//form" position="attributes">
+                    <attribute name="name">Product Template</attribute>
+                </xpath>
+                <field name="detailed_type" position="after">
+                    <field name="quantity" />
+                </field>
+
+            </field>
+        </record>
+
+
+    </data>
+</odoo>

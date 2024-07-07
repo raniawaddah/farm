@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="yc_group" model="res.groups">
+            <field name="name">YC</field>
+        </record>
+
+        <record id="customers_admin_group" model="res.groups">
+            <field name="name">Customers Admin</field>
+        </record>
+
+        <record id="products_admin_group" model="res.groups">
+            <field name="name">Products Admin</field>
+        </record>
+
+        <record id="allow_to_show_note" model="res.groups">
+            <field name="name">Show Note</field>
+        </record>
+
+
+
+    </data>
+</odoo>

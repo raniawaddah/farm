@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_farm_customer,access_farm_customer,model_farm_customer,customers_admin_group,1,1,1,1
+access_farm_products,access_farm_products,model_farm_products,customers_admin_group,1,1,1,1
+
+

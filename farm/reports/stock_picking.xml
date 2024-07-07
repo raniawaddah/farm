@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="stock_picking_inherit" inherit_id="stock.report_picking">
+
+            <xpath expr="//div[@class='row']//div[2]/span/strong" position="replace">
+                <strong>Warehouse Location</strong>
+            </xpath>
+
+            <!--            <xpath expr="//div[@class='page']//h1" position="replace">-->
+            <!--            </xpath>-->
+
+            <xpath expr="//table/thead/tr/th" position="after">
+                <th name="th_cost">
+                    <strong>Cost</strong>
+                </th>
+            </xpath>
+
+            <xpath expr="//tbody/t/tr/td" position="after">
+                <td>
+                    <span t-field="ml.product_id.cost"/>
+
+                </td>
+            </xpath>
+
+
+        </template>
+
+    </data>
+</odoo>
